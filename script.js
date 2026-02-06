@@ -51,22 +51,42 @@ function mostrarSeccion(seccion) {
     video.pause();
     galeria.style.display = "block";
 
-    const fotos = dataGlobal[seccion];
-    fotos.forEach((foto, index) => {
-      const img = document.createElement("img");
-      img.src = "imagenes/" + foto;
+    const archivos = dataGlobal[seccion];
+    archivos.forEach((archivo, index) => {
+      let elemento;
 
-      setTimeout(() => img.classList.add("visible"), index*120);
+      if(archivo.endsWith(".mp4")) {
+        // Crear elemento de vídeo
+        elemento = document.createElement("video");
+        elemento.src = "imagenes/" + archivo;
+        elemento.controls = true;
+        elemento.loop = true;
+        elemento.muted = true;
+        elemento.autoplay = true;
+      } else {
+        // Crear elemento de imagen
+        elemento = document.createElement("img");
+        elemento.src = "imagenes/" + archivo;
 
-      img.onclick = () => {
-        imagenGrande.src = img.src;
-        lightbox.style.display = "flex";
-      };
+        // Lightbox al hacer click
+        elemento.onclick = () => {
+          imagenGrande.src = elemento.src;
+          lightbox.style.display = "flex";
+        };
+      }
 
-      galeria.appendChild(img);
+      // Estilo común para imágenes y vídeos
+      elemento.classList.add("visible");
+      elemento.style.width = "100%";
+      elemento.style.marginBottom = "15px";
+      elemento.style.borderRadius = "20px";
+      elemento.style.boxShadow = "0 10px 25px rgba(0,0,0,0.4)";
+      
+      galeria.appendChild(elemento);
     });
   }
 }
+
 
 // LIGHTBOX
 document.getElementById("cerrar").onclick = () => lightbox.style.display = "none";
