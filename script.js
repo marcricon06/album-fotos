@@ -9,35 +9,46 @@ const imagenGrande = document.getElementById("imagenGrande");
 const videoContainer = document.getElementById("videoInicio");
 const video = document.getElementById("video");
 
-// Mostrar mainContent al cargar
-window.onload = () => { document.getElementById("mainContent").style.display = "block"; };
+// Mostrar contenido al cargar
+window.onload = () => {
+  document.getElementById("mainContent").style.display = "block";
+};
 
 // Cargar JSON
 fetch("imagenes.json")
 .then(res => res.json())
 .then(data => {
+
   dataGlobal = data;
-  const secciones = Object.keys(data);
+
+  // IMPORTANTE: añadir sección Inicio manualmente
+  const secciones = ["Inicio", ...Object.keys(data)];
+
   currentSection = "Inicio";
 
   // Crear botones del menú
   secciones.forEach(seccion => {
+
     const btn = document.createElement("button");
     btn.innerText = seccion;
-    btn.onclick = () => { cambiarSeccion(seccion); };
+
+    btn.onclick = () => {
+      cambiarSeccion(seccion);
+    };
+
     menu.appendChild(btn);
   });
 
   mostrarSeccion(currentSection);
 });
 
-// Cambiar de sección
+// Cambiar sección
 function cambiarSeccion(seccion) {
   currentSection = seccion;
   mostrarSeccion(currentSection);
 }
 
-// Mostrar sección actual
+// Mostrar sección
 function mostrarSeccion(seccion) {
 
   // Animación salida
@@ -51,6 +62,7 @@ function mostrarSeccion(seccion) {
 
       galeria.style.display = "none";
       videoContainer.style.display = "block";
+
       video.currentTime = 0;
       video.play();
 
@@ -58,17 +70,18 @@ function mostrarSeccion(seccion) {
 
       videoContainer.style.display = "none";
       video.pause();
+
       galeria.style.display = "block";
 
-      const archivos = dataGlobal[seccion];
+      const archivos = dataGlobal[seccion] || [];
 
-      archivos.forEach((archivo, index) => {
+      archivos.forEach((archivo) => {
 
         let elemento;
 
+        // Detectar VIDEO
         if(archivo.endsWith(".mp4") || archivo.endsWith(".webm")) {
 
-          // VIDEO
           elemento = document.createElement("video");
           elemento.src = "imagenes/" + archivo;
           elemento.controls = true;
@@ -88,15 +101,14 @@ function mostrarSeccion(seccion) {
           };
         }
 
+        // Estilo común
         elemento.style.width = "100%";
         elemento.style.marginBottom = "15px";
         elemento.style.borderRadius = "20px";
         elemento.style.boxShadow = "0 10px 25px rgba(0,0,0,0.4)";
 
         galeria.appendChild(elemento);
-
       });
-
     }
 
     // Animación entrada
@@ -107,19 +119,11 @@ function mostrarSeccion(seccion) {
 }
 
 
-      // Estilo común para imágenes y vídeos
-      elemento.classList.add("visible");
-      elemento.style.width = "100%";
-      elemento.style.marginBottom = "15px";
-      elemento.style.borderRadius = "20px";
-      elemento.style.boxShadow = "0 10px 25px rgba(0,0,0,0.4)";
-      
-      galeria.appendChild(elemento);
-    });
-  }
-}
-
-
 // LIGHTBOX
-document.getElementById("cerrar").onclick = () => lightbox.style.display = "none";
-lightbox.onclick = () => lightbox.style.display = "none";
+document.getElementById("cerrar").onclick = () => {
+  lightbox.style.display = "none";
+};
+
+lightbox.onclick = () => {
+  lightbox.style.display = "none";
+};
