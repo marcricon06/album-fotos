@@ -7,10 +7,14 @@ fetch("imagenes.json")
   const imagenGrande = document.getElementById("imagenGrande");
   const cerrar = document.getElementById("cerrar");
 
-  fotos.forEach(foto => {
+  fotos.forEach((foto, index) => {
 
     const img = document.createElement("img");
     img.src = "imagenes/" + foto;
+
+    setTimeout(() => {
+      img.classList.add("visible");
+    }, index * 120);
 
     img.onclick = () => {
       imagenGrande.src = img.src;
@@ -21,12 +25,7 @@ fetch("imagenes.json")
 
   });
 
-  cerrar.onclick = () => {
-    lightbox.style.display = "none";
-  };
-
-  lightbox.onclick = () => {
-    lightbox.style.display = "none";
-  };
+  cerrar.onclick = () => lightbox.style.display="none";
+  lightbox.onclick = () => lightbox.style.display="none";
 
 });
