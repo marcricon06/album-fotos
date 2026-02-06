@@ -20,13 +20,11 @@ fetch("imagenes.json")
 .then(data => {
 
   dataGlobal = data;
-
-  // IMPORTANTE: añadir sección Inicio manualmente
   const secciones = Object.keys(data);
 
   currentSection = "Inicio";
 
-  // Crear botones del menú
+  // Crear botones menú
   secciones.forEach(seccion => {
 
     const btn = document.createElement("button");
@@ -51,71 +49,60 @@ function cambiarSeccion(seccion) {
 // Mostrar sección
 function mostrarSeccion(seccion) {
 
-  // Animación salida
-  galeria.classList.add("fade-out");
+  galeria.innerHTML = "";
 
-  setTimeout(() => {
+  if(seccion === "Inicio") {
 
-    galeria.innerHTML = "";
+    galeria.style.display = "none";
+    videoContainer.style.display = "block";
 
-    if(seccion === "Inicio") {
+    video.currentTime = 0;
+    video.play();
 
-      galeria.style.display = "none";
-      videoContainer.style.display = "block";
+  } else {
 
-      video.currentTime = 0;
-      video.play();
+    videoContainer.style.display = "none";
+    video.pause();
 
-    } else {
+    galeria.style.display = "block";
 
-      videoContainer.style.display = "none";
-      video.pause();
+    const archivos = dataGlobal[seccion] || [];
 
-      galeria.style.display = "block";
+    archivos.forEach((archivo) => {
 
-      const archivos = dataGlobal[seccion] || [];
+      let elemento;
 
-      archivos.forEach((archivo) => {
+      // VIDEO
+      if(archivo.endsWith(".mp4") || archivo.endsWith(".webm")) {
 
-        let elemento;
+        elemento = document.createElement("video");
+        elemento.src = "imagenes/" + archivo;
+        elemento.controls = true;
+        elemento.loop = true;
+        elemento.muted = true;
+        elemento.autoplay = true;
 
-        // Detectar VIDEO
-        if(archivo.endsWith(".mp4") || archivo.endsWith(".webm")) {
+      } else {
 
-          elemento = document.createElement("video");
-          elemento.src = "imagenes/" + archivo;
-          elemento.controls = true;
-          elemento.loop = true;
-          elemento.muted = true;
-          elemento.autoplay = true;
+        // IMAGEN
+        elemento = document.createElement("img");
+        elemento.src = "imagenes/" + archivo;
 
-        } else {
+        elemento.onclick = () => {
+          imagenGrande.src = elemento.src;
+          lightbox.style.display = "flex";
+        };
+      }
 
-          // IMAGEN
-          elemento = document.createElement("img");
-          elemento.src = "imagenes/" + archivo;
+      elemento.style.width = "100%";
+      elemento.style.marginBottom = "15px";
+      elemento.style.borderRadius = "20px";
+      elemento.style.boxShadow = "0 10px 25px rgba(0,0,0,0.4)";
 
-          elemento.onclick = () => {
-            imagenGrande.src = elemento.src;
-            lightbox.style.display = "flex";
-          };
-        }
+      galeria.appendChild(elemento);
 
-        // Estilo común
-        elemento.style.width = "100%";
-        elemento.style.marginBottom = "15px";
-        elemento.style.borderRadius = "20px";
-        elemento.style.boxShadow = "0 10px 25px rgba(0,0,0,0.4)";
-
-        galeria.appendChild(elemento);
-      });
-    }
-
-    // Animación entrada
-    galeria.classList.remove("fade-out");
-    galeria.classList.add("fade-in");
-
-  }, 300);
+    });
+  }
 }
 
 
