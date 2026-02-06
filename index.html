@@ -1,28 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestro Álbum ❤️</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
 <body>
 
-<!-- CONTENIDO PRINCIPAL -->
-<div id="mainContent" style="display:none;">
+<!-- VIDEO DE INICIO -->
+<div id="videoInicio" style="display:block;">
+  <video id="video" autoplay muted loop>
+    <source src="video-intro.mp4" type="video/mp4">
+  </video>
+</div>
 
-  <!-- FONDO ROMÁNTICO / FORMAS DIFUMINADAS -->
+<!-- CONTENIDO PRINCIPAL: HEADER, MENÚ, GALERÍA -->
+<div id="mainContent" style="display:none;">
   <div class="background"></div>
 
   <!-- HEADER -->
   <header>
-    <h1>NUESTROS RECUERDOS ❤️</h1>
+    <h1>Nuestros Recuerdos ❤️</h1>
     <p class="subtitulo">Felices 20 Núria</p>
   </header>
 
   <!-- MENÚ DE SUBAPARTADOS -->
   <nav id="menu"></nav>
 
-  <!-- VIDEO EN SUBAPARTADO “INICIO” -->
-  <div id="videoInicio" style="display:none;">
-    <video id="video" autoplay muted loop>
-      <source src="video-intro.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <!-- GALERÍA -->
+  <!-- GALERÍA DE FOTOS -->
   <div id="galeria" class="galeria"></div>
 
   <!-- LIGHTBOX -->
@@ -30,8 +37,8 @@
     <span id="cerrar">&times;</span>
     <img id="imagenGrande">
   </div>
-
 </div>
 
 <script src="script.js"></script>
 </body>
+</html>
