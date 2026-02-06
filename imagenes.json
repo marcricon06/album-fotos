@@ -1,3 +1,27 @@
-[
-"foto1.png"
-]
+{
+  "Nuestros Inicios": [
+    "foto1.png",
+    "inicios2.jpg"
+  ],
+  "Bolonia": [
+    "bolonia1.jpg",
+    "bolonia2.jpg"
+  ],
+  "Niza": [
+    "niza1.jpg",
+    "niza2.jpg"
+  ],
+  "Ginebra": [
+    "ginebra1.jpg",
+    "ginebra2.jpg"
+  ],
+  "Viajes en Grupo": [
+    "grupo1.jpg",
+    "grupo2.jpg"
+  ],
+  "Más Recuerdos": [
+    "recuerdo1.jpg",
+    "recuerdo2.jpg"
+  ]
+}
+
