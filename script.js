@@ -8,11 +8,10 @@ const imagenGrande = document.getElementById("imagenGrande");
 
 const videoContainer = document.getElementById("videoInicio");
 const video = document.getElementById("video");
+const mainContent = document.getElementById("mainContent");
 
-// Mostrar el contenido principal al cargar
-window.onload = () => {
-  document.getElementById("mainContent").style.display = "block";
-};
+// Mostrar mainContent al cargar
+window.onload = () => { mainContent.style.display = "block"; };
 
 // Cargar JSON
 fetch("imagenes.json")
@@ -20,39 +19,37 @@ fetch("imagenes.json")
 .then(data => {
   dataGlobal = data;
   const secciones = Object.keys(data);
-  currentSection = "Inicio"; // El primer subapartado que se ve
+  currentSection = "Inicio"; // subapartado inicial
 
   // Crear botones del menú
   secciones.forEach(seccion => {
     const btn = document.createElement("button");
     btn.innerText = seccion;
-    btn.onclick = () => {
-      cambiarSeccion(seccion);
-    };
+    btn.onclick = () => { cambiarSeccion(seccion); };
     menu.appendChild(btn);
   });
 
   mostrarSeccion(currentSection);
 });
 
-// Función para cambiar de sección
+// Cambiar de sección
 function cambiarSeccion(seccion) {
   currentSection = seccion;
   mostrarSeccion(currentSection);
 }
 
-// Función que muestra la sección actual
+// Mostrar sección actual
 function mostrarSeccion(seccion) {
   galeria.innerHTML = "";
 
   if(seccion === "Inicio") {
-    // Mostrar vídeo en bucle
     videoContainer.style.display = "block";
-    video.currentTime = 0; // reinicia al volver a Inicio
+    mainContent.style.display = "none";
+    video.currentTime = 0;
     video.play();
   } else {
-    // Ocultar vídeo y mostrar galería
     videoContainer.style.display = "none";
+    mainContent.style.display = "block";
     video.pause();
 
     const fotos = dataGlobal[seccion];
