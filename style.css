@@ -1,3 +1,4 @@
+/* =================== FONDO ROMÁNTICO =================== */
 body {
   margin:0;
   font-family:'Poppins',sans-serif;
@@ -6,6 +7,7 @@ body {
   background:#0f172a;
 }
 
+/* Fondo con formas difuminadas */
 .background {
   position:fixed;
   width:100%;
@@ -42,11 +44,16 @@ body::after {
   z-index:-1;
 }
 
-header { text-align:center; padding:40px; }
+/* =================== HEADER =================== */
+header {
+  text-align:center;
+  padding:40px;
+}
+
 h1 { font-size:2.7rem; margin-bottom:10px; }
 .subtitulo { font-size:1.3rem; opacity:0.9; }
 
-/* MENÚ DE SUBAPARTADOS */
+/* =================== MENÚ =================== */
 nav#menu {
   display:flex;
   justify-content:center;
@@ -65,12 +72,17 @@ nav#menu button {
   transition:0.3s;
 }
 
-nav#menu button:hover {
-  background:rgba(255,255,255,0.3);
+nav#menu button:hover { background:rgba(255,255,255,0.3); }
+
+/* =================== GALERÍA =================== */
+.galeria {
+  column-count:3;
+  column-gap:15px;
+  padding:20px;
+  max-width:1200px;
+  margin:0 auto;
 }
 
-/* GALERÍA */
-.galeria { column-count:3; column-gap:15px; padding:20px; }
 @media(max-width:900px){ .galeria { column-count:2; } }
 @media(max-width:500px){ .galeria { column-count:1; } }
 
@@ -88,7 +100,7 @@ nav#menu button:hover {
 .galeria img.visible { opacity:1; transform:translateY(0); }
 .galeria img:hover { transform:scale(1.04); }
 
-/* LIGHTBOX */
+/* =================== LIGHTBOX =================== */
 .lightbox {
   display:none;
   position:fixed;
@@ -100,8 +112,20 @@ nav#menu button:hover {
   justify-content:center;
   align-items:center;
 }
-.lightbox img { max-width:90%; max-height:90%; border-radius:15px; }
-#cerrar { position:absolute; top:20px; right:30px; font-size:40px; cursor:pointer; }
+.lightbox img {
+  max-width:90%;
+  max-height:90%;
+  border-radius:15px;
+}
+#cerrar {
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:40px;
+  cursor:pointer;
+}
+
+/* =================== VIDEO DE INICIO =================== */
 #videoInicio {
   position:fixed;
   top:0;
@@ -120,4 +144,3 @@ nav#menu button:hover {
   height:100%;
   object-fit:cover;
 }
-
