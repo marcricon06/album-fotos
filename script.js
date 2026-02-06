@@ -1,17 +1,32 @@
 fetch("imagenes.json")
-.then(response => response.json())
+.then(res => res.json())
 .then(fotos => {
 
- const galeria = document.getElementById("galeria");
+  const galeria = document.getElementById("galeria");
+  const lightbox = document.getElementById("lightbox");
+  const imagenGrande = document.getElementById("imagenGrande");
+  const cerrar = document.getElementById("cerrar");
 
- fotos.forEach(foto => {
+  fotos.forEach(foto => {
 
-   const img = document.createElement("img");
+    const img = document.createElement("img");
+    img.src = "imagenes/" + foto;
 
-   img.src = "imagenes/" + foto;
+    img.onclick = () => {
+      imagenGrande.src = img.src;
+      lightbox.style.display = "flex";
+    };
 
-   galeria.appendChild(img);
+    galeria.appendChild(img);
 
- });
+  });
+
+  cerrar.onclick = () => {
+    lightbox.style.display = "none";
+  };
+
+  lightbox.onclick = () => {
+    lightbox.style.display = "none";
+  };
 
 });
