@@ -8,10 +8,9 @@ const imagenGrande = document.getElementById("imagenGrande");
 
 const videoContainer = document.getElementById("videoInicio");
 const video = document.getElementById("video");
-const mainContent = document.getElementById("mainContent");
 
 // Mostrar mainContent al cargar
-window.onload = () => { mainContent.style.display = "block"; };
+window.onload = () => { document.getElementById("mainContent").style.display = "block"; };
 
 // Cargar JSON
 fetch("imagenes.json")
@@ -19,7 +18,7 @@ fetch("imagenes.json")
 .then(data => {
   dataGlobal = data;
   const secciones = Object.keys(data);
-  currentSection = "Inicio"; // subapartado inicial
+  currentSection = "Inicio";
 
   // Crear botones del menú
   secciones.forEach(seccion => {
@@ -43,14 +42,14 @@ function mostrarSeccion(seccion) {
   galeria.innerHTML = "";
 
   if(seccion === "Inicio") {
+    galeria.style.display = "none";
     videoContainer.style.display = "block";
-    mainContent.style.display = "none";
     video.currentTime = 0;
     video.play();
   } else {
     videoContainer.style.display = "none";
-    mainContent.style.display = "block";
     video.pause();
+    galeria.style.display = "block";
 
     const fotos = dataGlobal[seccion];
     fotos.forEach((foto, index) => {
