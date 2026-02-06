@@ -22,7 +22,7 @@ fetch("imagenes.json")
   dataGlobal = data;
 
   // IMPORTANTE: añadir sección Inicio manualmente
-  const secciones = ["Inicio", ...Object.keys(data)];
+  const secciones = Object.keys(data);
 
   currentSection = "Inicio";
 
