@@ -55,7 +55,7 @@ function mostrarSeccion(seccion) {
     archivos.forEach((archivo, index) => {
       let elemento;
 
-      if(archivo.endsWith(".mp4")) {
+      if(archivo.endsWith(".mp4") || archivo.endsWith(".webm")) {
         // Crear elemento de vídeo
         elemento = document.createElement("video");
         elemento.src = "imagenes/" + archivo;
