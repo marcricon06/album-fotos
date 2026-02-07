@@ -67,25 +67,33 @@ archivos.forEach(archivo=>{
 
 let elemento;
 
-if(archivo.endsWith(".mp4")||archivo.endsWith(".webm")){
+// VIDEO
+if(
+  archivo.endsWith(".mp4") ||
+  archivo.endsWith(".webm") ||
+  archivo.endsWith(".mov") // agregamos .mov
+) {
 
-elemento=document.createElement("video");
-elemento.src="imagenes/"+archivo;
-elemento.controls=true;
-elemento.loop=true;
-elemento.muted=true;
-elemento.autoplay=true;
+  elemento = document.createElement("video");
+  elemento.src = "imagenes/" + archivo;
+  elemento.controls = true;
+  elemento.loop = true;
+  elemento.muted = true;
+  elemento.autoplay = true;
+  
+  // Opcional: mensaje si el navegador no soporta el video
+  elemento.innerText = "Tu navegador no soporta este formato de video.";
 
-}else{
+} else {
 
-elemento=document.createElement("img");
-elemento.src="imagenes/"+archivo;
+  // IMAGEN
+  elemento = document.createElement("img");
+  elemento.src = "imagenes/" + archivo;
 
-elemento.onclick=()=>{
-imagenGrande.src=elemento.src;
-lightbox.style.display="flex";
-};
-
+  elemento.onclick = () => {
+    imagenGrande.src = elemento.src;
+    lightbox.style.display = "flex";
+  };
 }
 
 galeria.appendChild(elemento);
