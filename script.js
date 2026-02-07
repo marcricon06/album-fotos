@@ -98,3 +98,25 @@ galeria.appendChild(elemento);
 
 document.getElementById("cerrar").onclick=()=>lightbox.style.display="none";
 lightbox.onclick=()=>lightbox.style.display="none";
+
+// ===== EFECTO WOW ENTRADA =====
+
+const intro = document.getElementById("introPantalla");
+const entrarBtn = document.getElementById("entrarBtn");
+const mainContent = document.getElementById("mainContent");
+
+mainContent.style.display="none";
+
+entrarBtn.onclick = () => {
+
+intro.style.opacity="0";
+intro.style.transition="1s";
+
+setTimeout(()=>{
+
+intro.style.display="none";
+mainContent.style.display="block";
+
+},1000);
+
+};
