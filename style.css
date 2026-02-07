@@ -84,27 +84,25 @@ nav#menu button:hover { background:rgba(255,255,255,0.3); }
 /* =================== GALERÍA estilo Instagram =================== */
 .galeria {
   display: grid;
-  grid-template-columns: repeat(3, minmax(200px, 1fr)); /* 3 columnas proporcionales */
-  gap: 20px; /* separación entre filas y columnas */
-  justify-content: center; /* centra la galería dentro del contenedor */
-  max-width: 1000px; /* ancho máximo de la galería */
-  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas exactas */
+  gap: 20px; /* espacio entre imágenes y videos */
+  justify-content: center;
+  max-width: 960px; /* ancho máximo de la galería */
+  margin: 0 auto; /* centra la galería */
 }
 
-.galeria img,
-.galeria video {
-  width: 100%; /* ocupa toda la celda */
+.galeria img, .galeria video {
+  width: 100%;
+  max-width: 300px; /* un poco más grandes */
   aspect-ratio: 1 / 1; /* cuadradas */
   object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 3px 10px rgba(0,0,0,0.4);
   transition: transform 0.3s ease;
-  display: block;
 }
 
-.galeria img:hover,
-.galeria video:hover {
+.galeria img:hover, .galeria video:hover {
   transform: scale(1.05);
 }
 
@@ -152,14 +150,14 @@ nav#menu button:hover { background:rgba(255,255,255,0.3); }
 }
 
 /* =================== RESPONSIVE =================== */
-@media(max-width:950px) {
+@media(max-width:900px) {
   .galeria {
     grid-template-columns: repeat(2, 1fr); /* 2 columnas tablet */
     gap: 15px;
   }
 }
 
-@media(max-width:650px) {
+@media(max-width:600px) {
   .galeria {
     grid-template-columns: 1fr; /* 1 columna móvil */
     gap: 10px;
