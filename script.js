@@ -87,11 +87,13 @@ function mostrarSeccion(seccion) {
         // IMAGEN
         elemento = document.createElement("img");
         elemento.src = "imagenes/" + archivo;
+        elemento.classList.add("visible"); // hace que se vea
 
         elemento.onclick = () => {
           imagenGrande.src = elemento.src;
           lightbox.style.display = "flex";
         };
+
       }
 
       elemento.style.width = "100%";
