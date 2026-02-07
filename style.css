@@ -84,13 +84,15 @@ nav#menu button:hover { background:rgba(255,255,255,0.3); }
 /* =================== GALERÍA estilo Instagram =================== */
 .galeria {
   display: grid;
-  grid-template-columns: repeat(3, 300px); /* 3 columnas fijas */
-  gap: 30px; /* espacio entre columnas y filas */
+  grid-template-columns: repeat(3, minmax(200px, 1fr)); /* 3 columnas proporcionales */
+  gap: 20px; /* separación entre filas y columnas */
   justify-content: center; /* centra la galería dentro del contenedor */
+  max-width: 1000px; /* ancho máximo de la galería */
   margin: 0 auto;
 }
 
-.galeria img, .galeria video {
+.galeria img,
+.galeria video {
   width: 100%; /* ocupa toda la celda */
   aspect-ratio: 1 / 1; /* cuadradas */
   object-fit: cover;
@@ -101,7 +103,8 @@ nav#menu button:hover { background:rgba(255,255,255,0.3); }
   display: block;
 }
 
-.galeria img:hover, .galeria video:hover {
+.galeria img:hover,
+.galeria video:hover {
   transform: scale(1.05);
 }
 
@@ -151,14 +154,14 @@ nav#menu button:hover { background:rgba(255,255,255,0.3); }
 /* =================== RESPONSIVE =================== */
 @media(max-width:950px) {
   .galeria {
-    grid-template-columns: repeat(2, 45%); /* 2 columnas tablet */
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas tablet */
+    gap: 15px;
   }
 }
 
 @media(max-width:650px) {
   .galeria {
     grid-template-columns: 1fr; /* 1 columna móvil */
-    gap: 15px;
+    gap: 10px;
   }
 }
